@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Developer Guide | Acala Network</title>
+  <link rel="stylesheet" href="06.ugiaasjkpi.css">
+  <link href="css2.css" rel="stylesheet">
+</head>
+<body class="bg-white text-gray-900">
+
+  <header class="border-b border-fd-border bg-fd-card sticky top-0 z-10">
+    <div class="max-w-5xl mx-auto px-4 py-3 flex items-center justify-between">
+      <a href="index.html" class="font-bold text-lg text-fd-card-foreground">Acala Network</a>
+      <nav class="flex gap-4 flex-wrap text-sm">
+        <a href="index.html" class="text-fd-muted-foreground hover:text-fd-primary transition-colors">Home</a>
+        <a href="documentation.html" class="text-fd-muted-foreground hover:text-fd-primary transition-colors">Documentation</a>
+        <a href="develop.html" class="text-fd-primary font-semibold transition-colors">Develop</a>
+        <a href="mainnet.html" class="text-fd-muted-foreground hover:text-fd-primary transition-colors">Mainnet</a>
+        <a href="testnet.html" class="text-fd-muted-foreground hover:text-fd-primary transition-colors">Testnet</a>
+        <a href="node.html" class="text-fd-muted-foreground hover:text-fd-primary transition-colors">Node</a>
+        <a href="rpc.html" class="text-fd-muted-foreground hover:text-fd-primary transition-colors">RPC</a>
+        <a href="methods.html" class="text-fd-muted-foreground hover:text-fd-primary transition-colors">Methods</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="max-w-5xl mx-auto px-4 py-10">
+
+    <h1 class="text-3xl font-bold text-fd-card-foreground mb-2">Developer Guide</h1>
+    <p class="text-fd-muted-foreground mb-8">Build on Acala using Substrate tooling or Ethereum-compatible libraries via EVM+.</p>
+
+    <!-- Installation -->
+    <section class="mb-10">
+      <h2 class="text-2xl font-bold text-fd-card-foreground mb-4">Installation &amp; Setup</h2>
+      <div class="grid grid-cols-2 gap-4 mb-4">
+        <div class="bg-fd-card border border-fd-border rounded-xl p-4">
+          <h3 class="font-bold text-fd-card-foreground mb-2">Substrate (Polkadot.js)</h3>
+          <p class="text-sm text-fd-muted-foreground mb-3">
+            The official JavaScript/TypeScript library for interacting with Substrate-based chains including Acala.
+            Supports all Substrate RPC methods, extrinsic signing, and storage queries.
+          </p>
+          <pre class="bg-fd-secondary rounded-lg p-3 text-xs overflow-x-auto"><code>npm install @polkadot/api
+npm install @polkadot/keyring
+npm install @polkadot/util</code></pre>
+        </div>
+        <div class="bg-fd-card border border-fd-border rounded-xl p-4">
+          <h3 class="font-bold text-fd-card-foreground mb-2">EVM+ (Ethereum Tools)</h3>
+          <p class="text-sm text-fd-muted-foreground mb-3">
+            Use standard Ethereum libraries to deploy and interact with Solidity contracts on Acala's EVM+ layer.
+            ethers.js v6 is recommended for new projects.
+          </p>
+          <pre class="bg-fd-secondary rounded-lg p-3 text-xs overflow-x-auto"><code>npm install ethers
+# or legacy web3.js
+npm install web3
+
+# Hardhat for contract development
+npm install --save-dev hardhat</code></pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- Connecting to Acala -->
+    <section class="mb-10">
+      <h2 class="text-2xl font-bold text-fd-card-foreground mb-4">Connecting to Acala</h2>
+
+      <div class="bg-fd-card border border-fd-border rounded-xl p-5 mb-4">
+        <h3 class="font-bold text-fd-card-foreground mb-2">WebSocket Connection (Recommended)</h3>
+        <p class="text-sm text-fd-muted-foreground mb-3">
+          WebSocket connections are preferred for most use cases as they support subscriptions (new blocks,
+          storage changes, events) and maintain persistent state. Replace <code class="bg-fd-secondary px-1 rounded">YOUR_API_KEY</code>
+          with your key from <a href="https://dashboard.dwellir.com/" class="text-fd-primary hover:underline" target="_blank">dashboard.dwellir.com</a>.
+        </p>
+        <pre class="bg-fd-secondary rounded-lg p-4 text-xs overflow-x-auto"><code>const { ApiPromise, WsProvider } = require('@polkadot/api');
+
+async function main() {
+  const provider = new WsProvider('wss://api-acala.n.dwellir.com/YOUR_API_KEY');
+  const api = await ApiPromise.create({ provider });
+
+  const chain = await api.rpc.system.chain();
+  const version = await api.rpc.state.getRuntimeVersion();
+
+  console.log('Connected to:', chain.toString());
+  console.log('Spec version:', version.specVersion.toNumber());
+  // Expected: Acala, 2300
+
+  await api.disconnect();
+}
+
+main().catch(console.error);</code></pre>
+      </div>
+
+      <div class="bg-fd-card border border-fd-border rounded-xl p-5 mb-4">
+        <h3 class="font-bold text-fd-card-foreground mb-2">HTTPS Connection</h3>
+        <p class="text-sm text-fd-muted-foreground mb-3">
+          Use HTTPS for one-shot queries where a persistent connection is not required, such as reading a single
+          storage value or submitting a pre-signed extrinsic.
+        </p>
+        <pre class="bg-fd-secondary rounded-lg p-4 text-xs overflow-x-auto"><code>const { ApiPromise, HttpProvider } = require('@polkadot/api');
+
+const provider = new HttpProvider('https://api-acala.n.dwellir.com/YOUR_API_KEY');
+const api = await ApiPromise.create({ provider });
+
+const blockHash = await api.rpc.chain.getFinalizedHead();
+console.log('Finalized head:', blockHash.toHex());</code></pre>
+      </div>
+
+      <div class="bg-fd-card border border-fd-border rounded-xl p-5">
+        <h3 class="font-bold text-fd-card-foreground mb-2">EVM+ Connection with ethers.js</h3>
+        <p class="text-sm text-fd-muted-foreground mb-3">
+          To interact with Acala's EVM+ layer, use a standard Ethereum JSON-RPC provider pointed at the Acala
+          EVM+ endpoint. MetaMask can also be configured to use this endpoint.
+        </p>
+        <pre class="bg-fd-secondary rounded-lg p-4 text-xs overflow-x-auto"><code>const { ethers } = require('ethers');
+
+// EVM+ endpoint for Acala
+const provider = new ethers.JsonRpcProvider(
+  'https://eth-rpc-acala.aca-api.network'
+);
+
+const blockNumber = await provider.getBlockNumber();
+console.log('EVM+ block number:', blockNumber);
+
+// Deploying a contract (Hardhat config)
+// hardhat.config.js
+module.exports = {
+  networks: {
+    acala: {
+      url: 'https://eth-rpc-acala.aca-api.network',
+      chainId: 787,
+      accounts: [process.env.PRIVATE_KEY]
+    }
+  }
+};</code></pre>
+      </div>
+    </section>
+
+    <!-- DeFi Pallets -->
+    <section class="mb-10">
+      <h2 class="text-2xl font-bold text-fd-card-foreground mb-4">Interacting with DeFi Pallets</h2>
+
+      <div class="bg-fd-card border border-fd-border rounded-xl p-5 mb-4">
+        <h3 class="font-bold text-fd-card-foreground mb-2">Querying aUSD Balance</h3>
+        <p class="text-sm text-fd-muted-foreground mb-3">
+          aUSD is tracked via the <code class="bg-fd-secondary px-1 rounded">tokens</code> pallet using a
+          <code class="bg-fd-secondary px-1 rounded">CurrencyId</code> of <code class="bg-fd-secondary px-1 rounded">{ Token: 'AUSD' }</code>.
+        </p>
+        <pre class="bg-fd-secondary rounded-lg p-4 text-xs overflow-x-auto"><code>// Query aUSD balance for an address
+const address = '23M5ttkmR6Kco6wSSGtxKDM5gbeXqAXbBRdCy4m2VHNnJPFP';
+const currencyId = { Token: 'AUSD' };
+
+const balance = await api.query.tokens.accounts(address, currencyId);
+console.log('aUSD free balance:', balance.free.toString());</code></pre>
+      </div>
+
+      <div class="bg-fd-card border border-fd-border rounded-xl p-5 mb-4">
+        <h3 class="font-bold text-fd-card-foreground mb-2">LDOT Liquid Staking</h3>
+        <pre class="bg-fd-secondary rounded-lg p-4 text-xs overflow-x-auto"><code>// Mint LDOT by staking DOT via the homa pallet
+const dotAmount = api.createType('Balance', '1000000000000'); // 1 DOT
+
+const tx = api.tx.homa.mint(dotAmount);
+
+// Sign and send
+await tx.signAndSend(account, ({ status }) => {
+  if (status.isInBlock) {
+    console.log('Mint LDOT included in block:', status.asInBlock.toString());
+  }
+});</code></pre>
+      </div>
+
+      <div class="bg-fd-card border border-fd-border rounded-xl p-5">
+        <h3 class="font-bold text-fd-card-foreground mb-2">DEX Token Swap</h3>
+        <pre class="bg-fd-secondary rounded-lg p-4 text-xs overflow-x-auto"><code>// Swap ACA for AUSD via the built-in DEX
+const path = [{ Token: 'ACA' }, { Token: 'AUSD' }];
+const supplyAmount = api.createType('Balance', '1000000000000');
+const minTargetAmount = api.createType('Balance', '900000000000');
+
+const swapTx = api.tx.dex.swapWithExactSupply(
+  path,
+  supplyAmount,
+  minTargetAmount
+);
+
+await swapTx.signAndSend(account);</code></pre>
+      </div>
+    </section>
+
+    <!-- Dev Tools -->
+    <section class="mb-10">
+      <h2 class="text-2xl font-bold text-fd-card-foreground mb-4">Development Tools</h2>
+      <div class="grid grid-cols-3 gap-4">
+        <div class="bg-fd-card border border-fd-border rounded-xl p-4">
+          <h3 class="font-bold text-fd-card-foreground mb-2">Polkadot.js Apps</h3>
+          <p class="text-sm text-fd-muted-foreground">
+            The browser-based Substrate UI. Connect to the Dwellir WSS endpoint to inspect storage, submit
+            extrinsics, and browse on-chain events. Available at
+            <a href="https://polkadot.js.org/apps/" class="text-fd-primary hover:underline" target="_blank">polkadot.js.org/apps</a>.
+          </p>
+        </div>
+        <div class="bg-fd-card border border-fd-border rounded-xl p-4">
+          <h3 class="font-bold text-fd-card-foreground mb-2">Subxt (Rust)</h3>
+          <p class="text-sm text-fd-muted-foreground">
+            Type-safe Rust client for Substrate chains. Generate bindings from Acala's metadata and interact
+            with pallets in strongly-typed Rust code. Ideal for high-performance off-chain workers and indexers.
+          </p>
+          <pre class="bg-fd-secondary rounded-lg p-2 text-xs mt-2"><code>[dependencies]
+subxt = "0.34"</code></pre>
+        </div>
+        <div class="bg-fd-card border border-fd-border rounded-xl p-4">
+          <h3 class="font-bold text-fd-card-foreground mb-2">py-substrate-interface</h3>
+          <p class="text-sm text-fd-muted-foreground">
+            Python library for interacting with Substrate chains. Supports all RPC methods, extrinsic construction,
+            and SCALE encoding/decoding. Good for scripting, analytics, and data pipelines.
+          </p>
+          <pre class="bg-fd-secondary rounded-lg p-2 text-xs mt-2"><code>pip install substrate-interface</code></pre>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="border-t border-fd-border bg-fd-card mt-12">
+    <div class="max-w-5xl mx-auto px-4 py-8 text-sm text-fd-muted-foreground">
+      <div class="flex flex-wrap gap-6 justify-between">
+        <div>
+          <p class="font-semibold text-fd-card-foreground mb-2">Dwellir</p>
+          <p>Managed RPC infrastructure for Acala Network.</p>
+          <p>Support: <a href="mailto:support@dwellir.com" class="text-fd-primary hover:underline">support@dwellir.com</a></p>
+        </div>
+        <div>
+          <p class="font-semibold text-fd-card-foreground mb-2">Resources</p>
+          <ul class="space-y-1">
+            <li><a href="https://dashboard.dwellir.com/" class="text-fd-primary hover:underline" target="_blank">Dwellir Dashboard</a></li>
+            <li><a href="https://acala.network/" class="text-fd-primary hover:underline" target="_blank">Acala Portal</a></li>
+            <li><a href="https://acala.subscan.io/" class="text-fd-primary hover:underline" target="_blank">Subscan Explorer</a></li>
+          </ul>
+        </div>
+      </div>
+      <p class="mt-6 text-center text-xs">© 2024 Dwellir. Acala is a Polkadot parachain (ID 2000).</p>
+    </div>
+  </footer>
+
+</body>
+</html>

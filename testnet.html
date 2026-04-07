@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mandala Testnet | Acala Network</title>
+  <link rel="stylesheet" href="06.ugiaasjkpi.css">
+  <link href="css2.css" rel="stylesheet">
+</head>
+<body class="bg-white text-gray-900">
+
+  <header class="border-b border-fd-border bg-fd-card sticky top-0 z-10">
+    <div class="max-w-5xl mx-auto px-4 py-3 flex items-center justify-between">
+      <a href="index.html" class="font-bold text-lg text-fd-card-foreground">Acala Network</a>
+      <nav class="flex gap-4 flex-wrap text-sm">
+        <a href="index.html" class="text-fd-muted-foreground hover:text-fd-primary transition-colors">Home</a>
+        <a href="documentation.html" class="text-fd-muted-foreground hover:text-fd-primary transition-colors">Documentation</a>
+        <a href="develop.html" class="text-fd-muted-foreground hover:text-fd-primary transition-colors">Develop</a>
+        <a href="mainnet.html" class="text-fd-muted-foreground hover:text-fd-primary transition-colors">Mainnet</a>
+        <a href="testnet.html" class="text-fd-primary font-semibold transition-colors">Testnet</a>
+        <a href="node.html" class="text-fd-muted-foreground hover:text-fd-primary transition-colors">Node</a>
+        <a href="rpc.html" class="text-fd-muted-foreground hover:text-fd-primary transition-colors">RPC</a>
+        <a href="methods.html" class="text-fd-muted-foreground hover:text-fd-primary transition-colors">Methods</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="max-w-5xl mx-auto px-4 py-10">
+
+    <h1 class="text-3xl font-bold text-fd-card-foreground mb-2">Mandala Testnet</h1>
+    <p class="text-fd-muted-foreground mb-8">Acala's public testnet for developers to test DeFi integrations before mainnet deployment.</p>
+
+    <!-- Overview -->
+    <section class="mb-10">
+      <h2 class="text-2xl font-bold text-fd-card-foreground mb-4">Overview</h2>
+      <div class="bg-fd-card border border-fd-border rounded-xl p-6">
+        <p class="text-fd-muted-foreground mb-3">
+          <strong>Mandala</strong> is Acala's public test network, designed to closely mirror the Acala mainnet
+          environment. It runs the same Substrate runtime, pallets, and EVM+ configuration as mainnet, allowing
+          developers to test transactions, smart contracts, and DeFi integrations without risking real assets.
+        </p>
+        <p class="text-fd-muted-foreground mb-3">
+          Mandala uses test tokens with no real monetary value. These tokens can be obtained for free from the
+          Acala faucet. The testnet is periodically reset to clear state, so do not rely on it for persistent data.
+          Always test on Mandala before deploying to mainnet or Karura.
+        </p>
+        <p class="text-fd-muted-foreground">
+          Mandala is also used by the Acala core team to validate runtime upgrades, new pallet introductions,
+          and governance changes before they are applied to Karura or Acala mainnet.
+        </p>
+      </div>
+    </section>
+
+    <!-- Parameters -->
+    <section class="mb-10">
+      <h2 class="text-2xl font-bold text-fd-card-foreground mb-4">Testnet Parameters</h2>
+      <div class="bg-fd-card border border-fd-border rounded-xl overflow-hidden">
+        <table class="w-full text-sm">
+          <thead class="bg-fd-secondary">
+            <tr>
+              <th class="text-left px-4 py-3 text-fd-card-foreground font-semibold">Parameter</th>
+              <th class="text-left px-4 py-3 text-fd-card-foreground font-semibold">Value</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="border-t border-fd-border">
+              <td class="px-4 py-3 font-medium text-fd-card-foreground">Network Name</td>
+              <td class="px-4 py-3 text-fd-muted-foreground">Mandala TC9</td>
+            </tr>
+            <tr class="border-t border-fd-border">
+              <td class="px-4 py-3 font-medium text-fd-card-foreground">Native Token</td>
+              <td class="px-4 py-3 text-fd-muted-foreground">ACA (test, no real value)</td>
+            </tr>
+            <tr class="border-t border-fd-border">
+              <td class="px-4 py-3 font-medium text-fd-card-foreground">SS58 Prefix</td>
+              <td class="px-4 py-3 text-fd-muted-foreground"><code class="bg-fd-secondary px-1 rounded">10</code></td>
+            </tr>
+            <tr class="border-t border-fd-border">
+              <td class="px-4 py-3 font-medium text-fd-card-foreground">EVM Chain ID</td>
+              <td class="px-4 py-3 text-fd-muted-foreground"><code class="bg-fd-secondary px-1 rounded">595</code></td>
+            </tr>
+            <tr class="border-t border-fd-border">
+              <td class="px-4 py-3 font-medium text-fd-card-foreground">WebSocket RPC</td>
+              <td class="px-4 py-3 text-fd-muted-foreground"><code class="bg-fd-secondary px-1 rounded text-xs">wss://mandala-tc9.aca-staging.network</code></td>
+            </tr>
+            <tr class="border-t border-fd-border">
+              <td class="px-4 py-3 font-medium text-fd-card-foreground">EVM RPC</td>
+              <td class="px-4 py-3 text-fd-muted-foreground"><code class="bg-fd-secondary px-1 rounded text-xs">https://eth-rpc-mandala.aca-staging.network</code></td>
+            </tr>
+            <tr class="border-t border-fd-border">
+              <td class="px-4 py-3 font-medium text-fd-card-foreground">Explorer</td>
+              <td class="px-4 py-3 text-fd-muted-foreground">
+                <a href="https://blockscout.mandala.aca-staging.network/" class="text-fd-primary hover:underline" target="_blank">Blockscout Mandala</a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Faucet -->
+    <section class="mb-10">
+      <h2 class="text-2xl font-bold text-fd-card-foreground mb-4">Getting Test Tokens</h2>
+      <div class="bg-fd-card border border-fd-border rounded-xl p-6">
+        <p class="text-fd-muted-foreground mb-4">
+          Mandala testnet tokens can be obtained free of charge via the Acala faucet. These tokens have no real
+          monetary value and exist solely for testing purposes.
+        </p>
+        <ol class="list-decimal list-inside text-sm text-fd-muted-foreground space-y-2 mb-4">
+          <li>Join the <a href="https://discord.gg/vdbFVCH" class="text-fd-primary hover:underline" target="_blank">Acala Discord server</a> and navigate to the <code class="bg-fd-secondary px-1 rounded">#testnet-faucet</code> channel.</li>
+          <li>Send the command: <code class="bg-fd-secondary px-1 rounded">!drip YOUR_ACALA_ADDRESS</code> where the address uses SS58 prefix 10.</li>
+          <li>The bot will send test ACA, aUSD, and DOT tokens to your address within seconds.</li>
+          <li>Verify receipt using Polkadot.js Apps connected to the Mandala WSS endpoint, or via the Blockscout explorer.</li>
+        </ol>
+        <div class="bg-fd-secondary border border-fd-border rounded-lg p-3 text-sm text-fd-muted-foreground">
+          <strong>Note:</strong> Faucet tokens are rate-limited. Each address can request tokens once every 24 hours.
+          If you need large amounts for stress testing, contact the Acala team directly.
+        </div>
+      </div>
+    </section>
+
+    <!-- Wallet Connection -->
+    <section class="mb-10">
+      <h2 class="text-2xl font-bold text-fd-card-foreground mb-4">Connecting Your Wallet</h2>
+      <div class="grid grid-cols-2 gap-4">
+        <div class="bg-fd-card border border-fd-border rounded-xl p-4">
+          <h3 class="font-bold text-fd-card-foreground mb-2">Polkadot.js Extension</h3>
+          <p class="text-sm text-fd-muted-foreground mb-3">
+            Install the Polkadot.js browser extension to manage Substrate accounts. Then connect
+            Polkadot.js Apps to the Mandala WebSocket endpoint.
+          </p>
+          <ol class="list-decimal list-inside text-xs text-fd-muted-foreground space-y-1">
+            <li>Go to <a href="https://polkadot.js.org/apps" class="text-fd-primary hover:underline" target="_blank">polkadot.js.org/apps</a></li>
+            <li>Click the network selector (top-left)</li>
+            <li>Select "Live Networks" → custom endpoint</li>
+            <li>Enter: <code class="bg-fd-secondary px-1 rounded">wss://mandala-tc9.aca-staging.network</code></li>
+            <li>Click "Switch" and wait for connection</li>
+          </ol>
+        </div>
+        <div class="bg-fd-card border border-fd-border rounded-xl p-4">
+          <h3 class="font-bold text-fd-card-foreground mb-2">MetaMask (EVM+)</h3>
+          <p class="text-sm text-fd-muted-foreground mb-3">
+            Add Mandala as a custom network in MetaMask to test EVM+ contracts and transactions.
+          </p>
+          <table class="text-xs w-full">
+            <tbody>
+              <tr class="border-b border-fd-border">
+                <td class="py-1 font-medium text-fd-card-foreground pr-2">Network Name</td>
+                <td class="py-1 text-fd-muted-foreground">Acala Mandala TC9</td>
+              </tr>
+              <tr class="border-b border-fd-border">
+                <td class="py-1 font-medium text-fd-card-foreground pr-2">RPC URL</td>
+                <td class="py-1 text-fd-muted-foreground break-all">https://eth-rpc-mandala.aca-staging.network</td>
+              </tr>
+              <tr class="border-b border-fd-border">
+                <td class="py-1 font-medium text-fd-card-foreground pr-2">Chain ID</td>
+                <td class="py-1 text-fd-muted-foreground">595</td>
+              </tr>
+              <tr>
+                <td class="py-1 font-medium text-fd-card-foreground pr-2">Symbol</td>
+                <td class="py-1 text-fd-muted-foreground">ACA</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testing Workflow -->
+    <section class="mb-10">
+      <h2 class="text-2xl font-bold text-fd-card-foreground mb-4">Testing Workflow Best Practices</h2>
+      <div class="bg-fd-card border border-fd-border rounded-xl p-6">
+        <ul class="list-disc list-inside text-sm text-fd-muted-foreground space-y-2">
+          <li><strong>Start with unit tests</strong> using a local Mandala node (via Docker or cargo run) before using the public testnet.</li>
+          <li><strong>Use the public Mandala testnet</strong> for integration testing of multi-pallet or cross-chain workflows.</li>
+          <li><strong>Verify on Karura</strong> with real (but lower-value) assets before Acala mainnet deployment — Karura has a more aggressive runtime upgrade cadence.</li>
+          <li><strong>Test all edge cases:</strong> insufficient collateral, slippage in DEX swaps, failed XCM transfers, and extrinsic weight limits.</li>
+          <li><strong>Check event emissions:</strong> subscribe to <code class="bg-fd-secondary px-1 rounded">system.events</code> to confirm expected pallet events fire correctly.</li>
+          <li><strong>Simulate runtime upgrades</strong> on a local fork of Mandala before submitting governance proposals on mainnet.</li>
+          <li><strong>Never use mainnet keys on testnet</strong> or vice versa — keep separate key pairs to avoid accidental exposure of mainnet private keys.</li>
+        </ul>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="border-t border-fd-border bg-fd-card mt-12">
+    <div class="max-w-5xl mx-auto px-4 py-8 text-sm text-fd-muted-foreground">
+      <div class="flex flex-wrap gap-6 justify-between">
+        <div>
+          <p class="font-semibold text-fd-card-foreground mb-2">Dwellir</p>
+          <p>Managed RPC infrastructure for Acala Network.</p>
+          <p>Support: <a href="mailto:support@dwellir.com" class="text-fd-primary hover:underline">support@dwellir.com</a></p>
+        </div>
+        <div>
+          <p class="font-semibold text-fd-card-foreground mb-2">Resources</p>
+          <ul class="space-y-1">
+            <li><a href="https://dashboard.dwellir.com/" class="text-fd-primary hover:underline" target="_blank">Dwellir Dashboard</a></li>
+            <li><a href="https://acala.network/" class="text-fd-primary hover:underline" target="_blank">Acala Portal</a></li>
+            <li><a href="https://acala.subscan.io/" class="text-fd-primary hover:underline" target="_blank">Subscan Explorer</a></li>
+          </ul>
+        </div>
+      </div>
+      <p class="mt-6 text-center text-xs">© 2024 Dwellir. Acala is a Polkadot parachain (ID 2000).</p>
+    </div>
+  </footer>
+
+</body>
+</html>

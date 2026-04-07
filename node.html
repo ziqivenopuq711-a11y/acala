@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Running a Node | Acala Network</title>
+  <link rel="stylesheet" href="06.ugiaasjkpi.css">
+  <link href="css2.css" rel="stylesheet">
+</head>
+<body class="bg-white text-gray-900">
+
+  <header class="border-b border-fd-border bg-fd-card sticky top-0 z-10">
+    <div class="max-w-5xl mx-auto px-4 py-3 flex items-center justify-between">
+      <a href="index.html" class="font-bold text-lg text-fd-card-foreground">Acala Network</a>
+      <nav class="flex gap-4 flex-wrap text-sm">
+        <a href="index.html" class="text-fd-muted-foreground hover:text-fd-primary transition-colors">Home</a>
+        <a href="documentation.html" class="text-fd-muted-foreground hover:text-fd-primary transition-colors">Documentation</a>
+        <a href="develop.html" class="text-fd-muted-foreground hover:text-fd-primary transition-colors">Develop</a>
+        <a href="mainnet.html" class="text-fd-muted-foreground hover:text-fd-primary transition-colors">Mainnet</a>
+        <a href="testnet.html" class="text-fd-muted-foreground hover:text-fd-primary transition-colors">Testnet</a>
+        <a href="node.html" class="text-fd-primary font-semibold transition-colors">Node</a>
+        <a href="rpc.html" class="text-fd-muted-foreground hover:text-fd-primary transition-colors">RPC</a>
+        <a href="methods.html" class="text-fd-muted-foreground hover:text-fd-primary transition-colors">Methods</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="max-w-5xl mx-auto px-4 py-10">
+
+    <h1 class="text-3xl font-bold text-fd-card-foreground mb-2">Running a Node</h1>
+    <p class="text-fd-muted-foreground mb-8">Set up a collator, archive, or full node to participate in the Acala network infrastructure.</p>
+
+    <!-- Node Types -->
+    <section class="mb-10">
+      <h2 class="text-2xl font-bold text-fd-card-foreground mb-4">Node Types</h2>
+      <div class="grid grid-cols-3 gap-4">
+        <div class="bg-fd-card border border-fd-border rounded-xl p-4">
+          <h3 class="font-bold text-fd-card-foreground mb-2">🏗 Collator Node</h3>
+          <p class="text-sm text-fd-muted-foreground mb-2">
+            Collators are responsible for building parachain blocks and submitting them to the Polkadot relay chain
+            validators for inclusion and finality. They collect transactions from the mempool, execute the runtime,
+            and produce Proof-of-Validity (PoV) blocks.
+          </p>
+          <p class="text-sm text-fd-muted-foreground">
+            Running a collator requires bonding ACA and being selected via the collator selection pallet.
+            Collators earn a portion of transaction fees as rewards.
+          </p>
+        </div>
+        <div class="bg-fd-card border border-fd-border rounded-xl p-4">
+          <h3 class="font-bold text-fd-card-foreground mb-2">📚 Archive Node</h3>
+          <p class="text-sm text-fd-muted-foreground mb-2">
+            Archive nodes store the complete historical state of the blockchain — every block, every storage entry
+            at every block height. This makes them essential for explorers, indexers (SubQuery, The Graph),
+            and applications that need to query historical state.
+          </p>
+          <p class="text-sm text-fd-muted-foreground">
+            Archive nodes require significantly more disk space (several TB for long-running chains) but provide
+            the full <code class="bg-fd-secondary px-1 rounded">state_getStorage</code> history.
+          </p>
+        </div>
+        <div class="bg-fd-card border border-fd-border rounded-xl p-4">
+          <h3 class="font-bold text-fd-card-foreground mb-2">⚙️ Full Node</h3>
+          <p class="text-sm text-fd-muted-foreground mb-2">
+            Full nodes synchronise the entire blockchain and validate all blocks but prune older state to save
+            disk space. They serve RPC requests for current state but cannot answer historical state queries
+            beyond the pruning window (typically 256–1024 blocks).
+          </p>
+          <p class="text-sm text-fd-muted-foreground">
+            Full nodes are suitable for running your own private RPC endpoint, participating in the p2p network,
+            and broadcasting transactions.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Hardware Requirements -->
+    <section class="mb-10">
+      <h2 class="text-2xl font-bold text-fd-card-foreground mb-4">Hardware Requirements</h2>
+      <div class="bg-fd-card border border-fd-border rounded-xl overflow-hidden">
+        <table class="w-full text-sm">
+          <thead class="bg-fd-secondary">
+            <tr>
+              <th class="text-left px-4 py-3 text-fd-card-foreground font-semibold">Component</th>
+              <th class="text-left px-4 py-3 text-fd-card-foreground font-semibold">Collator (Recommended)</th>
+              <th class="text-left px-4 py-3 text-fd-card-foreground font-semibold">Archive Node</th>
+              <th class="text-left px-4 py-3 text-fd-card-foreground font-semibold">Full Node (Minimum)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="border-t border-fd-border">
+              <td class="px-4 py-3 font-medium text-fd-card-foreground">CPU</td>
+              <td class="px-4 py-3 text-fd-muted-foreground">8-core x86_64, ≥3.0 GHz</td>
+              <td class="px-4 py-3 text-fd-muted-foreground">4-core x86_64</td>
+              <td class="px-4 py-3 text-fd-muted-foreground">2-core x86_64</td>
+            </tr>
+            <tr class="border-t border-fd-border">
+              <td class="px-4 py-3 font-medium text-fd-card-foreground">RAM</td>
+              <td class="px-4 py-3 text-fd-muted-foreground">32 GB DDR4</td>
+              <td class="px-4 py-3 text-fd-muted-foreground">16 GB</td>
+              <td class="px-4 py-3 text-fd-muted-foreground">8 GB</td>
+            </tr>
+            <tr class="border-t border-fd-border">
+              <td class="px-4 py-3 font-medium text-fd-card-foreground">Storage</td>
+              <td class="px-4 py-3 text-fd-muted-foreground">1 TB NVMe SSD</td>
+              <td class="px-4 py-3 text-fd-muted-foreground">4 TB NVMe SSD</td>
+              <td class="px-4 py-3 text-fd-muted-foreground">500 GB SSD</td>
+            </tr>
+            <tr class="border-t border-fd-border">
+              <td class="px-4 py-3 font-medium text-fd-card-foreground">Bandwidth</td>
+              <td class="px-4 py-3 text-fd-muted-foreground">500 Mbps symmetric, low latency</td>
+              <td class="px-4 py-3 text-fd-muted-foreground">100 Mbps</td>
+              <td class="px-4 py-3 text-fd-muted-foreground">50 Mbps</td>
+            </tr>
+            <tr class="border-t border-fd-border">
+              <td class="px-4 py-3 font-medium text-fd-card-foreground">OS</td>
+              <td class="px-4 py-3 text-fd-muted-foreground">Ubuntu 22.04 LTS (recommended)</td>
+              <td class="px-4 py-3 text-fd-muted-foreground">Ubuntu 20.04+ / Debian 11+</td>
+              <td class="px-4 py-3 text-fd-muted-foreground">Ubuntu 20.04+ / Debian 11+</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Installation -->
+    <section class="mb-10">
+      <h2 class="text-2xl font-bold text-fd-card-foreground mb-4">Installation</h2>
+
+      <div class="bg-fd-card border border-fd-border rounded-xl p-5 mb-4">
+        <h3 class="font-bold text-fd-card-foreground mb-2">Option 1: Pre-built Binary</h3>
+        <p class="text-sm text-fd-muted-foreground mb-3">
+          Download the latest pre-built Acala node binary from the official GitHub releases page. This is
+          the fastest way to get started.
+        </p>
+        <pre class="bg-fd-secondary rounded-lg p-4 text-xs overflow-x-auto"><code># Download the latest binary
+wget https://github.com/AcalaNetwork/Acala/releases/latest/download/acala
+
+# Make executable
+chmod +x ./acala
+
+# Verify binary
+./acala --version</code></pre>
+      </div>
+
+      <div class="bg-fd-card border border-fd-border rounded-xl p-5 mb-4">
+        <h3 class="font-bold text-fd-card-foreground mb-2">Option 2: Build from Source</h3>
+        <p class="text-sm text-fd-muted-foreground mb-3">
+          Building from source requires Rust and the Substrate build dependencies. Ensure you have at least
+          16 GB RAM for compilation.
+        </p>
+        <pre class="bg-fd-secondary rounded-lg p-4 text-xs overflow-x-auto"><code># Install Rust
+curl https://sh.rustup.rs -sSf | sh
+rustup default stable
+rustup update nightly
+rustup target add wasm32-unknown-unknown --toolchain nightly
+
+# Install system dependencies (Ubuntu)
+sudo apt install -y cmake pkg-config libssl-dev git clang libclang-dev
+
+# Clone and build
+git clone https://github.com/AcalaNetwork/Acala.git
+cd Acala
+cargo build --release -p acala-node
+
+# Binary location
+./target/release/acala --version</code></pre>
+      </div>
+
+      <div class="bg-fd-card border border-fd-border rounded-xl p-5">
+        <h3 class="font-bold text-fd-card-foreground mb-2">Starting a Full Node</h3>
+        <pre class="bg-fd-secondary rounded-lg p-4 text-xs overflow-x-auto"><code># Start a full node syncing Acala mainnet
+./acala \
+  --chain=acala \
+  --name="my-acala-node" \
+  --rpc-port=9944 \
+  --ws-port=9945 \
+  --rpc-cors=all \
+  --rpc-methods=safe \
+  --base-path=/data/acala \
+  -- \
+  --chain=polkadot
+
+# Archive node (add --state-pruning=archive --blocks-pruning=archive)
+./acala \
+  --chain=acala \
+  --state-pruning=archive \
+  --blocks-pruning=archive \
+  --base-path=/data/acala-archive \
+  -- \
+  --chain=polkadot</code></pre>
+      </div>
+    </section>
+
+    <!-- Monitoring -->
+    <section class="mb-10">
+      <h2 class="text-2xl font-bold text-fd-card-foreground mb-4">Configuration &amp; Monitoring</h2>
+      <div class="bg-fd-card border border-fd-border rounded-xl p-6">
+        <p class="text-fd-muted-foreground mb-4">
+          Acala nodes expose a Prometheus metrics endpoint (default: port 9615) that can be scraped by Prometheus
+          and visualised in Grafana. Key metrics to monitor include:
+        </p>
+        <ul class="list-disc list-inside text-sm text-fd-muted-foreground space-y-1 mb-4">
+          <li><code class="bg-fd-secondary px-1 rounded">substrate_block_height</code> — ensure the node is keeping up with the best and finalized head</li>
+          <li><code class="bg-fd-secondary px-1 rounded">substrate_sub_libp2p_peers_count</code> — peer count should remain above 10</li>
+          <li><code class="bg-fd-secondary px-1 rounded">substrate_tasks_polling_duration</code> — high values indicate CPU saturation</li>
+          <li>Disk IOPS and available space — NVMe SSDs are strongly recommended for write-intensive archive nodes</li>
+        </ul>
+        <p class="text-sm text-fd-muted-foreground">
+          Enable metrics with: <code class="bg-fd-secondary px-1 rounded">--prometheus-external --prometheus-port 9615</code>
+        </p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="border-t border-fd-border bg-fd-card mt-12">
+    <div class="max-w-5xl mx-auto px-4 py-8 text-sm text-fd-muted-foreground">
+      <div class="flex flex-wrap gap-6 justify-between">
+        <div>
+          <p class="font-semibold text-fd-card-foreground mb-2">Dwellir</p>
+          <p>Managed RPC infrastructure for Acala Network.</p>
+          <p>Support: <a href="mailto:support@dwellir.com" class="text-fd-primary hover:underline">support@dwellir.com</a></p>
+        </div>
+        <div>
+          <p class="font-semibold text-fd-card-foreground mb-2">Resources</p>
+          <ul class="space-y-1">
+            <li><a href="https://dashboard.dwellir.com/" class="text-fd-primary hover:underline" target="_blank">Dwellir Dashboard</a></li>
+            <li><a href="https://acala.network/" class="text-fd-primary hover:underline" target="_blank">Acala Portal</a></li>
+            <li><a href="https://acala.subscan.io/" class="text-fd-primary hover:underline" target="_blank">Subscan Explorer</a></li>
+          </ul>
+        </div>
+      </div>
+      <p class="mt-6 text-center text-xs">© 2024 Dwellir. Acala is a Polkadot parachain (ID 2000).</p>
+    </div>
+  </footer>
+
+</body>
+</html>
