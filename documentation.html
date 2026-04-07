@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Documentation | Acala Network</title>
+  <link rel="stylesheet" href="06.ugiaasjkpi.css">
+  <link href="css2.css" rel="stylesheet">
+</head>
+<body class="bg-white text-gray-900">
+
+  <header class="border-b border-fd-border bg-fd-card sticky top-0 z-10">
+    <div class="max-w-5xl mx-auto px-4 py-3 flex items-center justify-between">
+      <a href="index.html" class="font-bold text-lg text-fd-card-foreground">Acala Network</a>
+      <nav class="flex gap-4 flex-wrap text-sm">
+        <a href="index.html" class="text-fd-muted-foreground hover:text-fd-primary transition-colors">Home</a>
+        <a href="documentation.html" class="text-fd-primary font-semibold transition-colors">Documentation</a>
+        <a href="develop.html" class="text-fd-muted-foreground hover:text-fd-primary transition-colors">Develop</a>
+        <a href="mainnet.html" class="text-fd-muted-foreground hover:text-fd-primary transition-colors">Mainnet</a>
+        <a href="testnet.html" class="text-fd-muted-foreground hover:text-fd-primary transition-colors">Testnet</a>
+        <a href="node.html" class="text-fd-muted-foreground hover:text-fd-primary transition-colors">Node</a>
+        <a href="rpc.html" class="text-fd-muted-foreground hover:text-fd-primary transition-colors">RPC</a>
+        <a href="methods.html" class="text-fd-muted-foreground hover:text-fd-primary transition-colors">Methods</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="max-w-5xl mx-auto px-4 py-10">
+
+    <h1 class="text-3xl font-bold text-fd-card-foreground mb-2">Documentation</h1>
+    <p class="text-fd-muted-foreground mb-8">Complete reference for Acala Network — architecture, DeFi primitives, and developer resources.</p>
+
+    <!-- Overview -->
+    <section class="mb-10">
+      <h2 class="text-2xl font-bold text-fd-card-foreground mb-4">What is Acala?</h2>
+      <div class="bg-fd-card border border-fd-border rounded-xl p-6">
+        <p class="text-fd-muted-foreground mb-3">
+          Acala is a Substrate-based blockchain that operates as <strong>parachain ID 2000</strong> on the Polkadot relay chain.
+          It is designed specifically as the DeFi hub of the Polkadot ecosystem, providing core financial infrastructure
+          that other parachains can compose with via XCM cross-chain messaging.
+        </p>
+        <p class="text-fd-muted-foreground mb-3">
+          The network launched its mainnet in December 2021 after winning a Polkadot parachain slot auction.
+          Its native governance and utility token is <strong>ACA</strong>, used for transaction fees, governance voting,
+          and incentivising liquidity providers. The SS58 address prefix for Acala is <strong>10</strong>, meaning all
+          Acala addresses begin with a distinctive prefix that differentiates them from other Substrate chains.
+        </p>
+        <p class="text-fd-muted-foreground">
+          <strong>Karura</strong> is Acala's canary network, deployed as parachain 2000 on the Kusama relay chain.
+          Karura carries its own native token KAR and acts as a real-value, fast-moving testing ground for features
+          before they graduate to Acala mainnet. Both networks share the same codebase and architecture.
+        </p>
+      </div>
+    </section>
+
+    <!-- Key Concepts -->
+    <section class="mb-10">
+      <h2 class="text-2xl font-bold text-fd-card-foreground mb-4">Key Concepts</h2>
+      <div class="grid grid-cols-2 gap-4">
+        <div class="bg-fd-card border border-fd-border rounded-xl p-4">
+          <h3 class="font-bold text-fd-card-foreground mb-2">aUSD Stablecoin</h3>
+          <p class="text-sm text-fd-muted-foreground">
+            aUSD is Acala's decentralised, over-collateralised stablecoin soft-pegged to the US dollar.
+            Users lock accepted collateral assets (such as DOT, LDOT, or LP tokens) into Collateral Debt Positions (CDPs)
+            to mint aUSD. A stability fee is charged on outstanding debt, and positions are liquidated if the
+            collateralisation ratio falls below the required minimum. aUSD can be transferred via XCM to other
+            Polkadot parachains, serving as a cross-chain stablecoin primitive.
+          </p>
+        </div>
+        <div class="bg-fd-card border border-fd-border rounded-xl p-4">
+          <h3 class="font-bold text-fd-card-foreground mb-2">LDOT Liquid Staking</h3>
+          <p class="text-sm text-fd-muted-foreground">
+            LDOT (Liquid DOT) is Acala's liquid staking derivative. Users deposit DOT into the Acala liquid staking
+            protocol and receive LDOT in return, representing their staked DOT plus accumulated staking rewards.
+            LDOT is freely tradeable and can be used as collateral for aUSD or provided as liquidity in the DEX,
+            solving the opportunity cost problem of traditional staking where assets are locked and illiquid.
+          </p>
+        </div>
+        <div class="bg-fd-card border border-fd-border rounded-xl p-4">
+          <h3 class="font-bold text-fd-card-foreground mb-2">Built-in DEX</h3>
+          <p class="text-sm text-fd-muted-foreground">
+            Acala includes a native automated market maker (AMM) DEX as a Substrate pallet, not a smart contract.
+            This means the DEX benefits from the same security and performance as the base layer. Users can create
+            liquidity pools, provide liquidity to earn fees, and swap tokens trustlessly. The DEX is deeply integrated
+            with aUSD and LDOT, enabling complex DeFi interactions like collateralise-and-swap in a single transaction.
+          </p>
+        </div>
+        <div class="bg-fd-card border border-fd-border rounded-xl p-4">
+          <h3 class="font-bold text-fd-card-foreground mb-2">XCM Cross-Chain Messaging</h3>
+          <p class="text-sm text-fd-muted-foreground">
+            XCM (Cross-Consensus Messaging) is Polkadot's standard for cross-chain communication. Acala uses XCM to
+            send and receive assets and messages from other parachains without relying on a bridge. For example, DOT
+            can be teleported from the relay chain to Acala for use as collateral, and aUSD can be sent from Acala
+            to a DEX on another parachain — all atomically and trustlessly.
+          </p>
+        </div>
+        <div class="bg-fd-card border border-fd-border rounded-xl p-4">
+          <h3 class="font-bold text-fd-card-foreground mb-2">EVM+ Layer</h3>
+          <p class="text-sm text-fd-muted-foreground">
+            Acala's EVM+ is an Ethereum Virtual Machine implementation embedded within the Substrate runtime.
+            It goes beyond standard EVM compatibility by allowing EVM smart contracts to directly call Substrate
+            pallets and vice versa. This means Solidity contracts on Acala can interact with the DEX, aUSD,
+            and liquid staking natively. Developers can use familiar tools: Hardhat, Truffle, ethers.js, and MetaMask.
+          </p>
+        </div>
+        <div class="bg-fd-card border border-fd-border rounded-xl p-4">
+          <h3 class="font-bold text-fd-card-foreground mb-2">ACA Token</h3>
+          <p class="text-sm text-fd-muted-foreground">
+            ACA is the native token of Acala Network with a fixed maximum supply. It serves multiple purposes:
+            paying transaction fees (with a unique fee payment flexibility allowing fees in other tokens),
+            participating in on-chain governance (council elections, referenda), and serving as a system reserve
+            for the aUSD stability mechanism. ACA holders can stake to earn a share of network revenue.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Table of Contents -->
+    <section class="mb-10">
+      <h2 class="text-2xl font-bold text-fd-card-foreground mb-4">Documentation Index</h2>
+      <div class="bg-fd-card border border-fd-border rounded-xl p-6">
+        <table class="w-full text-sm">
+          <thead>
+            <tr class="border-b border-fd-border">
+              <th class="text-left py-2 pr-4 text-fd-card-foreground font-semibold">Page</th>
+              <th class="text-left py-2 text-fd-muted-foreground font-normal">Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="border-b border-fd-border">
+              <td class="py-2 pr-4"><a href="develop.html" class="text-fd-primary hover:underline font-medium">Develop</a></td>
+              <td class="py-2 text-fd-muted-foreground">Installation guide, code examples for @polkadot/api and ethers.js, pallet interaction.</td>
+            </tr>
+            <tr class="border-b border-fd-border">
+              <td class="py-2 pr-4"><a href="mainnet.html" class="text-fd-primary hover:underline font-medium">Mainnet</a></td>
+              <td class="py-2 text-fd-muted-foreground">Mainnet chain parameters, RPC endpoints, genesis hash, Karura canary network details.</td>
+            </tr>
+            <tr class="border-b border-fd-border">
+              <td class="py-2 pr-4"><a href="testnet.html" class="text-fd-primary hover:underline font-medium">Testnet</a></td>
+              <td class="py-2 text-fd-muted-foreground">Mandala testnet overview, faucet, wallet setup, and recommended testing workflow.</td>
+            </tr>
+            <tr class="border-b border-fd-border">
+              <td class="py-2 pr-4"><a href="node.html" class="text-fd-primary hover:underline font-medium">Node</a></td>
+              <td class="py-2 text-fd-muted-foreground">Node types (collator, archive, full), hardware requirements, and installation steps.</td>
+            </tr>
+            <tr class="border-b border-fd-border">
+              <td class="py-2 pr-4"><a href="rpc.html" class="text-fd-primary hover:underline font-medium">RPC</a></td>
+              <td class="py-2 text-fd-muted-foreground">Dwellir HTTPS and WebSocket endpoints, API key authentication, best practices.</td>
+            </tr>
+            <tr>
+              <td class="py-2 pr-4"><a href="methods.html" class="text-fd-primary hover:underline font-medium">Methods</a></td>
+              <td class="py-2 text-fd-muted-foreground">Complete RPC method reference with curl and TypeScript examples, smoke test checklist.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Quick Start -->
+    <section class="mb-10">
+      <h2 class="text-2xl font-bold text-fd-card-foreground mb-4">Quick Start</h2>
+      <div class="bg-fd-card border border-fd-border rounded-xl p-6">
+        <p class="text-fd-muted-foreground mb-4">
+          The fastest way to connect to Acala is via the Dwellir WebSocket endpoint. You will need an API key
+          from <a href="https://dashboard.dwellir.com/" class="text-fd-primary hover:underline" target="_blank">dashboard.dwellir.com</a>.
+        </p>
+        <ol class="list-decimal list-inside text-sm text-fd-muted-foreground space-y-2 mb-4">
+          <li>Sign up at <a href="https://dashboard.dwellir.com/" class="text-fd-primary hover:underline" target="_blank">dashboard.dwellir.com</a> and create an Acala endpoint to receive your API key.</li>
+          <li>Install the Polkadot.js API: <code class="bg-fd-secondary px-1 rounded text-fd-card-foreground">npm install @polkadot/api</code></li>
+          <li>Connect using WebSocket: <code class="bg-fd-secondary px-1 rounded text-fd-card-foreground">wss://api-acala.n.dwellir.com/YOUR_API_KEY</code></li>
+          <li>Query the chain: <code class="bg-fd-secondary px-1 rounded text-fd-card-foreground">await api.rpc.system.chain()</code> should return <code class="bg-fd-secondary px-1 rounded text-fd-card-foreground">Acala</code></li>
+        </ol>
+        <p class="text-sm text-fd-muted-foreground">See the <a href="develop.html" class="text-fd-primary hover:underline">Develop page</a> for full code examples.</p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="border-t border-fd-border bg-fd-card mt-12">
+    <div class="max-w-5xl mx-auto px-4 py-8 text-sm text-fd-muted-foreground">
+      <div class="flex flex-wrap gap-6 justify-between">
+        <div>
+          <p class="font-semibold text-fd-card-foreground mb-2">Dwellir</p>
+          <p>Managed RPC infrastructure for Acala Network.</p>
+          <p>Support: <a href="mailto:support@dwellir.com" class="text-fd-primary hover:underline">support@dwellir.com</a></p>
+        </div>
+        <div>
+          <p class="font-semibold text-fd-card-foreground mb-2">Resources</p>
+          <ul class="space-y-1">
+            <li><a href="https://dashboard.dwellir.com/" class="text-fd-primary hover:underline" target="_blank">Dwellir Dashboard</a></li>
+            <li><a href="https://acala.network/" class="text-fd-primary hover:underline" target="_blank">Acala Portal</a></li>
+            <li><a href="https://acala.subscan.io/" class="text-fd-primary hover:underline" target="_blank">Subscan Explorer</a></li>
+          </ul>
+        </div>
+      </div>
+      <p class="mt-6 text-center text-xs">© 2024 Dwellir. Acala is a Polkadot parachain (ID 2000).</p>
+    </div>
+  </footer>
+
+</body>
+</html>

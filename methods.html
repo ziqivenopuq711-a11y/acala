@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RPC Methods | Acala Network</title>
+  <link rel="stylesheet" href="06.ugiaasjkpi.css">
+  <link href="css2.css" rel="stylesheet">
+</head>
+<body class="bg-white text-gray-900">
+
+  <header class="border-b border-fd-border bg-fd-card sticky top-0 z-10">
+    <div class="max-w-5xl mx-auto px-4 py-3 flex items-center justify-between">
+      <a href="index.html" class="font-bold text-lg text-fd-card-foreground">Acala Network</a>
+      <nav class="flex gap-4 flex-wrap text-sm">
+        <a href="index.html" class="text-fd-muted-foreground hover:text-fd-primary transition-colors">Home</a>
+        <a href="documentation.html" class="text-fd-muted-foreground hover:text-fd-primary transition-colors">Documentation</a>
+        <a href="develop.html" class="text-fd-muted-foreground hover:text-fd-primary transition-colors">Develop</a>
+        <a href="mainnet.html" class="text-fd-muted-foreground hover:text-fd-primary transition-colors">Mainnet</a>
+        <a href="testnet.html" class="text-fd-muted-foreground hover:text-fd-primary transition-colors">Testnet</a>
+        <a href="node.html" class="text-fd-muted-foreground hover:text-fd-primary transition-colors">Node</a>
+        <a href="rpc.html" class="text-fd-muted-foreground hover:text-fd-primary transition-colors">RPC</a>
+        <a href="methods.html" class="text-fd-primary font-semibold transition-colors">Methods</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="max-w-5xl mx-auto px-4 py-10">
+
+    <h1 class="text-3xl font-bold text-fd-card-foreground mb-2">RPC Methods</h1>
+    <p class="text-fd-muted-foreground mb-8">Complete reference for Substrate JSON-RPC methods available on Acala Network via Dwellir endpoints.</p>
+
+    <!-- Methods Table -->
+    <section class="mb-10">
+      <h2 class="text-2xl font-bold text-fd-card-foreground mb-4">Method Reference</h2>
+      <div class="bg-fd-card border border-fd-border rounded-xl overflow-hidden">
+        <table class="w-full text-sm">
+          <thead class="bg-fd-secondary">
+            <tr>
+              <th class="text-left px-4 py-3 text-fd-card-foreground font-semibold">Method</th>
+              <th class="text-left px-4 py-3 text-fd-card-foreground font-semibold">Namespace</th>
+              <th class="text-left px-4 py-3 text-fd-card-foreground font-semibold">Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="border-t border-fd-border">
+              <td class="px-4 py-3 font-mono text-xs text-fd-primary">system_health</td>
+              <td class="px-4 py-3 text-fd-muted-foreground">system</td>
+              <td class="px-4 py-3 text-fd-muted-foreground">Returns node health: peer count, sync status, and whether the node should be considered healthy.</td>
+            </tr>
+            <tr class="border-t border-fd-border">
+              <td class="px-4 py-3 font-mono text-xs text-fd-primary">system_properties</td>
+              <td class="px-4 py-3 text-fd-muted-foreground">system</td>
+              <td class="px-4 py-3 text-fd-muted-foreground">Returns chain properties including SS58 prefix (10), token decimals (12), and token symbol (ACA).</td>
+            </tr>
+            <tr class="border-t border-fd-border">
+              <td class="px-4 py-3 font-mono text-xs text-fd-primary">system_chain</td>
+              <td class="px-4 py-3 text-fd-muted-foreground">system</td>
+              <td class="px-4 py-3 text-fd-muted-foreground">Returns the name of the current chain. For Acala mainnet this returns the string <code class="bg-fd-secondary px-1 rounded">Acala</code>.</td>
+            </tr>
+            <tr class="border-t border-fd-border">
+              <td class="px-4 py-3 font-mono text-xs text-fd-primary">system_accountNextIndex</td>
+              <td class="px-4 py-3 text-fd-muted-foreground">system</td>
+              <td class="px-4 py-3 text-fd-muted-foreground">Returns the next valid nonce for a given account address, accounting for pending transactions in the mempool.</td>
+            </tr>
+            <tr class="border-t border-fd-border">
+              <td class="px-4 py-3 font-mono text-xs text-fd-primary">chain_getHeader</td>
+              <td class="px-4 py-3 text-fd-muted-foreground">chain</td>
+              <td class="px-4 py-3 text-fd-muted-foreground">Returns the block header for a given block hash. Omit the hash parameter to get the latest block header.</td>
+            </tr>
+            <tr class="border-t border-fd-border">
+              <td class="px-4 py-3 font-mono text-xs text-fd-primary">chain_getBlock</td>
+              <td class="px-4 py-3 text-fd-muted-foreground">chain</td>
+              <td class="px-4 py-3 text-fd-muted-foreground">Returns the full block (header + extrinsics) for a given block hash.</td>
+            </tr>
+            <tr class="border-t border-fd-border">
+              <td class="px-4 py-3 font-mono text-xs text-fd-primary">chain_getBlockHash</td>
+              <td class="px-4 py-3 text-fd-muted-foreground">chain</td>
+              <td class="px-4 py-3 text-fd-muted-foreground">Returns the block hash for a given block number. Pass 0 to get the genesis hash.</td>
+            </tr>
+            <tr class="border-t border-fd-border">
+              <td class="px-4 py-3 font-mono text-xs text-fd-primary">chain_getFinalizedHead</td>
+              <td class="px-4 py-3 text-fd-muted-foreground">chain</td>
+              <td class="px-4 py-3 text-fd-muted-foreground">Returns the hash of the latest finalised block. Use this as an anchor for queries that require finality.</td>
+            </tr>
+            <tr class="border-t border-fd-border">
+              <td class="px-4 py-3 font-mono text-xs text-fd-primary">state_getRuntimeVersion</td>
+              <td class="px-4 py-3 text-fd-muted-foreground">state</td>
+              <td class="px-4 py-3 text-fd-muted-foreground">Returns the runtime version object including <code class="bg-fd-secondary px-1 rounded">specVersion</code> (2300) and <code class="bg-fd-secondary px-1 rounded">transactionVersion</code> (3).</td>
+            </tr>
+            <tr class="border-t border-fd-border">
+              <td class="px-4 py-3 font-mono text-xs text-fd-primary">state_getStorage</td>
+              <td class="px-4 py-3 text-fd-muted-foreground">state</td>
+              <td class="px-4 py-3 text-fd-muted-foreground">Returns the raw SCALE-encoded storage value at a given storage key, optionally at a given block hash.</td>
+            </tr>
+            <tr class="border-t border-fd-border">
+              <td class="px-4 py-3 font-mono text-xs text-fd-primary">state_getKeysPaged</td>
+              <td class="px-4 py-3 text-fd-muted-foreground">state</td>
+              <td class="px-4 py-3 text-fd-muted-foreground">Returns a paginated list of storage keys with a given prefix. Use for iterating over large storage maps without timeouts.</td>
+            </tr>
+            <tr class="border-t border-fd-border">
+              <td class="px-4 py-3 font-mono text-xs text-fd-primary">state_getMetadata</td>
+              <td class="px-4 py-3 text-fd-muted-foreground">state</td>
+              <td class="px-4 py-3 text-fd-muted-foreground">Returns the full SCALE-encoded runtime metadata, describing all pallets, storage items, calls, and events.</td>
+            </tr>
+            <tr class="border-t border-fd-border">
+              <td class="px-4 py-3 font-mono text-xs text-fd-primary">author_submitExtrinsic</td>
+              <td class="px-4 py-3 text-fd-muted-foreground">author</td>
+              <td class="px-4 py-3 text-fd-muted-foreground">Submits a signed or unsigned extrinsic to the node's transaction pool. Returns the extrinsic hash.</td>
+            </tr>
+            <tr class="border-t border-fd-border">
+              <td class="px-4 py-3 font-mono text-xs text-fd-primary">payment_queryInfo</td>
+              <td class="px-4 py-3 text-fd-muted-foreground">payment</td>
+              <td class="px-4 py-3 text-fd-muted-foreground">Returns fee estimation information (partial fee, weight, class) for a given encoded extrinsic at an optional block hash.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- cURL examples -->
+    <section class="mb-10">
+      <h2 class="text-2xl font-bold text-fd-card-foreground mb-4">cURL Examples</h2>
+
+      <div class="bg-fd-card border border-fd-border rounded-xl p-5 mb-4">
+        <h3 class="font-bold text-fd-card-foreground mb-2">system_health</h3>
+        <pre class="bg-fd-secondary rounded-lg p-4 text-xs overflow-x-auto"><code>curl -H "Content-Type: application/json" \
+  -d '{"id":1,"jsonrpc":"2.0","method":"system_health","params":[]}' \
+  https://api-acala.n.dwellir.com/YOUR_API_KEY
+
+# Expected response:
+# {"jsonrpc":"2.0","result":{"isSyncing":false,"peers":25,"shouldHavePeers":true},"id":1}</code></pre>
+      </div>
+
+      <div class="bg-fd-card border border-fd-border rounded-xl p-5 mb-4">
+        <h3 class="font-bold text-fd-card-foreground mb-2">chain_getHeader (latest)</h3>
+        <pre class="bg-fd-secondary rounded-lg p-4 text-xs overflow-x-auto"><code>curl -H "Content-Type: application/json" \
+  -d '{"id":1,"jsonrpc":"2.0","method":"chain_getHeader","params":[]}' \
+  https://api-acala.n.dwellir.com/YOUR_API_KEY
+
+# Returns block number, parent hash, state root, extrinsics root, and digest</code></pre>
+      </div>
+
+      <div class="bg-fd-card border border-fd-border rounded-xl p-5 mb-4">
+        <h3 class="font-bold text-fd-card-foreground mb-2">state_getRuntimeVersion</h3>
+        <pre class="bg-fd-secondary rounded-lg p-4 text-xs overflow-x-auto"><code>curl -H "Content-Type: application/json" \
+  -d '{"id":1,"jsonrpc":"2.0","method":"state_getRuntimeVersion","params":[]}' \
+  https://api-acala.n.dwellir.com/YOUR_API_KEY
+
+# Expected specVersion: 2300, transactionVersion: 3</code></pre>
+      </div>
+
+      <div class="bg-fd-card border border-fd-border rounded-xl p-5">
+        <h3 class="font-bold text-fd-card-foreground mb-2">chain_getFinalizedHead</h3>
+        <pre class="bg-fd-secondary rounded-lg p-4 text-xs overflow-x-auto"><code>curl -H "Content-Type: application/json" \
+  -d '{"id":1,"jsonrpc":"2.0","method":"chain_getFinalizedHead","params":[]}' \
+  https://api-acala.n.dwellir.com/YOUR_API_KEY
+
+# Returns the 0x... hash of the last finalised block</code></pre>
+      </div>
+    </section>
+
+    <!-- TypeScript Examples -->
+    <section class="mb-10">
+      <h2 class="text-2xl font-bold text-fd-card-foreground mb-4">TypeScript Examples</h2>
+      <div class="bg-fd-card border border-fd-border rounded-xl p-5 mb-4">
+        <h3 class="font-bold text-fd-card-foreground mb-2">system_properties &amp; chain_getHeader</h3>
+        <pre class="bg-fd-secondary rounded-lg p-4 text-xs overflow-x-auto"><code>import { ApiPromise, WsProvider } from '@polkadot/api';
+
+const api = await ApiPromise.create({
+  provider: new WsProvider('wss://api-acala.n.dwellir.com/YOUR_API_KEY')
+});
+
+// system_properties
+const props = await api.rpc.system.properties();
+console.log('SS58 prefix:', props.ss58Format.unwrap().toNumber()); // 10
+console.log('Token symbol:', props.tokenSymbol.unwrap()[0].toString()); // ACA
+console.log('Token decimals:', props.tokenDecimals.unwrap()[0].toNumber()); // 12
+
+// chain_getHeader
+const header = await api.rpc.chain.getHeader();
+console.log('Block number:', header.number.toNumber());
+console.log('State root:', header.stateRoot.toHex());</code></pre>
+      </div>
+
+      <div class="bg-fd-card border border-fd-border rounded-xl p-5">
+        <h3 class="font-bold text-fd-card-foreground mb-2">payment_queryInfo &amp; author_submitExtrinsic</h3>
+        <pre class="bg-fd-secondary rounded-lg p-4 text-xs overflow-x-auto"><code>// Build an extrinsic
+const tx = api.tx.balances.transferKeepAlive(
+  '23M5ttkmR6Kco6wSSGtxKDM5gbeXqAXbBRdCy4m2VHNnJPFP',
+  1_000_000_000_000n // 1 ACA
+);
+
+// payment_queryInfo — estimate fees
+const paymentInfo = await api.rpc.payment.queryInfo(tx.toHex());
+console.log('Estimated fee:', paymentInfo.partialFee.toHuman());
+
+// author_submitExtrinsic — sign and send
+const { nonce } = await api.query.system.account(account.address);
+const signedTx = await tx.signAsync(account, { nonce });
+const txHash = await api.rpc.author.submitExtrinsic(signedTx);
+console.log('Submitted tx hash:', txHash.toHex());</code></pre>
+      </div>
+    </section>
+
+    <!-- Smoke Test -->
+    <section class="mb-10">
+      <h2 class="text-2xl font-bold text-fd-card-foreground mb-4">Smoke Test Checklist</h2>
+      <div class="bg-fd-card border border-fd-border rounded-xl p-6">
+        <p class="text-fd-muted-foreground mb-4">
+          Run this sequence to verify your connection is healthy and the node is fully synced before building production integrations:
+        </p>
+        <ol class="list-decimal list-inside text-sm text-fd-muted-foreground space-y-3">
+          <li>
+            <strong>system_health</strong> — confirm <code class="bg-fd-secondary px-1 rounded">isSyncing: false</code>
+            and <code class="bg-fd-secondary px-1 rounded">peers &gt; 5</code>. A syncing node will return stale data.
+          </li>
+          <li>
+            <strong>chain_getHeader</strong> — verify the returned block number is recent (check against
+            <a href="https://acala.subscan.io/" class="text-fd-primary hover:underline" target="_blank">Subscan</a>).
+            A stale block number indicates the node is behind.
+          </li>
+          <li>
+            <strong>chain_getFinalizedHead</strong> — confirm finalized head is progressing. On Polkadot, finality
+            typically lags the best head by 1–2 blocks. A large gap suggests a relay chain issue.
+          </li>
+          <li>
+            <strong>state_getRuntimeVersion</strong> — verify <code class="bg-fd-secondary px-1 rounded">specVersion: 2300</code>
+            and <code class="bg-fd-secondary px-1 rounded">transactionVersion: 3</code>. If these differ, update your
+            signing library and type bundle accordingly.
+          </li>
+        </ol>
+        <pre class="bg-fd-secondary rounded-lg p-4 text-xs overflow-x-auto mt-4"><code>// Quick smoke test script
+const checks = await Promise.all([
+  api.rpc.system.health(),
+  api.rpc.chain.getHeader(),
+  api.rpc.chain.getFinalizedHead(),
+  api.rpc.state.getRuntimeVersion(),
+]);
+
+const [health, header, finalized, version] = checks;
+
+console.assert(!health.isSyncing.isTrue, 'Node is still syncing!');
+console.assert(health.peers.toNumber() > 5, 'Low peer count!');
+console.assert(version.specVersion.toNumber() === 2300, 'Unexpected spec version!');
+console.assert(version.transactionVersion.toNumber() === 3, 'Unexpected tx version!');
+console.log('All smoke tests passed ✓');</code></pre>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="border-t border-fd-border bg-fd-card mt-12">
+    <div class="max-w-5xl mx-auto px-4 py-8 text-sm text-fd-muted-foreground">
+      <div class="flex flex-wrap gap-6 justify-between">
+        <div>
+          <p class="font-semibold text-fd-card-foreground mb-2">Dwellir</p>
+          <p>Managed RPC infrastructure for Acala Network.</p>
+          <p>Support: <a href="mailto:support@dwellir.com" class="text-fd-primary hover:underline">support@dwellir.com</a></p>
+        </div>
+        <div>
+          <p class="font-semibold text-fd-card-foreground mb-2">Resources</p>
+          <ul class="space-y-1">
+            <li><a href="https://dashboard.dwellir.com/" class="text-fd-primary hover:underline" target="_blank">Dwellir Dashboard</a></li>
+            <li><a href="https://acala.network/" class="text-fd-primary hover:underline" target="_blank">Acala Portal</a></li>
+            <li><a href="https://acala.subscan.io/" class="text-fd-primary hover:underline" target="_blank">Subscan Explorer</a></li>
+          </ul>
+        </div>
+      </div>
+      <p class="mt-6 text-center text-xs">© 2024 Dwellir. Acala is a Polkadot parachain (ID 2000).</p>
+    </div>
+  </footer>
+
+</body>
+</html>

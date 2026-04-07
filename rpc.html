@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RPC Endpoints | Acala Network</title>
+  <link rel="stylesheet" href="06.ugiaasjkpi.css">
+  <link href="css2.css" rel="stylesheet">
+</head>
+<body class="bg-white text-gray-900">
+
+  <header class="border-b border-fd-border bg-fd-card sticky top-0 z-10">
+    <div class="max-w-5xl mx-auto px-4 py-3 flex items-center justify-between">
+      <a href="index.html" class="font-bold text-lg text-fd-card-foreground">Acala Network</a>
+      <nav class="flex gap-4 flex-wrap text-sm">
+        <a href="index.html" class="text-fd-muted-foreground hover:text-fd-primary transition-colors">Home</a>
+        <a href="documentation.html" class="text-fd-muted-foreground hover:text-fd-primary transition-colors">Documentation</a>
+        <a href="develop.html" class="text-fd-muted-foreground hover:text-fd-primary transition-colors">Develop</a>
+        <a href="mainnet.html" class="text-fd-muted-foreground hover:text-fd-primary transition-colors">Mainnet</a>
+        <a href="testnet.html" class="text-fd-muted-foreground hover:text-fd-primary transition-colors">Testnet</a>
+        <a href="node.html" class="text-fd-muted-foreground hover:text-fd-primary transition-colors">Node</a>
+        <a href="rpc.html" class="text-fd-primary font-semibold transition-colors">RPC</a>
+        <a href="methods.html" class="text-fd-muted-foreground hover:text-fd-primary transition-colors">Methods</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="max-w-5xl mx-auto px-4 py-10">
+
+    <h1 class="text-3xl font-bold text-fd-card-foreground mb-2">RPC Endpoints</h1>
+    <p class="text-fd-muted-foreground mb-8">Dwellir-managed RPC infrastructure for Acala Network — reliable, scalable, and always available.</p>
+
+    <!-- Endpoints -->
+    <section class="mb-10">
+      <h2 class="text-2xl font-bold text-fd-card-foreground mb-4">Available Endpoints</h2>
+      <div class="grid grid-cols-2 gap-4 mb-6">
+        <div class="bg-fd-card border border-fd-border rounded-xl p-5">
+          <div class="flex items-center gap-2 mb-2">
+            <span class="text-lg">🌐</span>
+            <h3 class="font-bold text-fd-card-foreground">HTTPS Endpoint</h3>
+          </div>
+          <p class="text-sm text-fd-muted-foreground mb-3">
+            Use for single, stateless requests: querying storage, submitting pre-signed extrinsics,
+            and polling chain state. Each request is an independent HTTP POST to the JSON-RPC endpoint.
+          </p>
+          <pre class="bg-fd-secondary rounded-lg p-3 text-xs overflow-x-auto"><code>https://api-acala.n.dwellir.com/YOUR_API_KEY</code></pre>
+        </div>
+        <div class="bg-fd-card border border-fd-border rounded-xl p-5">
+          <div class="flex items-center gap-2 mb-2">
+            <span class="text-lg">🔌</span>
+            <h3 class="font-bold text-fd-card-foreground">WebSocket Endpoint</h3>
+          </div>
+          <p class="text-sm text-fd-muted-foreground mb-3">
+            Preferred for subscriptions, long-running sessions, and real-time data. Supports
+            <code class="bg-fd-secondary px-1 rounded">state_subscribeStorage</code>,
+            <code class="bg-fd-secondary px-1 rounded">chain_subscribeNewHeads</code>, and all pub/sub methods.
+          </p>
+          <pre class="bg-fd-secondary rounded-lg p-3 text-xs overflow-x-auto"><code>wss://api-acala.n.dwellir.com/YOUR_API_KEY</code></pre>
+        </div>
+      </div>
+      <div class="bg-fd-secondary border border-fd-border rounded-xl p-4 text-sm text-fd-muted-foreground">
+        <strong>Note:</strong> Replace <code class="bg-white px-1 rounded border border-fd-border">YOUR_API_KEY</code> with your personal API key.
+        Keys are available from the <a href="https://dashboard.dwellir.com/" class="text-fd-primary hover:underline" target="_blank">Dwellir Dashboard</a> after sign-up.
+        Each key is rate-limited per tier; contact <a href="mailto:support@dwellir.com" class="text-fd-primary hover:underline">support@dwellir.com</a> to discuss higher limits.
+      </div>
+    </section>
+
+    <!-- API Key Auth -->
+    <section class="mb-10">
+      <h2 class="text-2xl font-bold text-fd-card-foreground mb-4">API Key Authentication</h2>
+      <div class="bg-fd-card border border-fd-border rounded-xl p-6">
+        <p class="text-fd-muted-foreground mb-4">
+          Dwellir uses API key authentication embedded in the URL path. There are no custom headers required —
+          simply append your key as the last path segment of the endpoint URL.
+        </p>
+        <ol class="list-decimal list-inside text-sm text-fd-muted-foreground space-y-2 mb-4">
+          <li>Navigate to <a href="https://dashboard.dwellir.com/" class="text-fd-primary hover:underline" target="_blank">dashboard.dwellir.com</a> and sign in or create an account.</li>
+          <li>Click <strong>Create New Endpoint</strong> and select <strong>Acala</strong> from the network list.</li>
+          <li>Your API key will be displayed in the endpoint URL, e.g., <code class="bg-fd-secondary px-1 rounded">abc123def456</code>.</li>
+          <li>Use the full URL in your application — the key is authenticated server-side with each request.</li>
+          <li>Monitor usage, rotate keys, and set rate limit alerts from the dashboard at any time.</li>
+        </ol>
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <p class="text-sm font-semibold text-fd-card-foreground mb-1">JavaScript / @polkadot/api</p>
+            <pre class="bg-fd-secondary rounded-lg p-3 text-xs overflow-x-auto"><code>const provider = new WsProvider(
+  'wss://api-acala.n.dwellir.com/abc123def456'
+);</code></pre>
+          </div>
+          <div>
+            <p class="text-sm font-semibold text-fd-card-foreground mb-1">Python / substrate-interface</p>
+            <pre class="bg-fd-secondary rounded-lg p-3 text-xs overflow-x-auto"><code>substrate = SubstrateInterface(
+  url="wss://api-acala.n.dwellir.com/abc123"
+)</code></pre>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WS vs HTTPS -->
+    <section class="mb-10">
+      <h2 class="text-2xl font-bold text-fd-card-foreground mb-4">WebSocket vs HTTPS</h2>
+      <div class="bg-fd-card border border-fd-border rounded-xl overflow-hidden">
+        <table class="w-full text-sm">
+          <thead class="bg-fd-secondary">
+            <tr>
+              <th class="text-left px-4 py-3 text-fd-card-foreground font-semibold">Feature</th>
+              <th class="text-left px-4 py-3 text-fd-card-foreground font-semibold">WebSocket (WSS)</th>
+              <th class="text-left px-4 py-3 text-fd-card-foreground font-semibold">HTTPS</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="border-t border-fd-border">
+              <td class="px-4 py-3 font-medium text-fd-card-foreground">Connection</td>
+              <td class="px-4 py-3 text-fd-muted-foreground">Persistent, full-duplex</td>
+              <td class="px-4 py-3 text-fd-muted-foreground">Request/response, stateless</td>
+            </tr>
+            <tr class="border-t border-fd-border">
+              <td class="px-4 py-3 font-medium text-fd-card-foreground">Subscriptions</td>
+              <td class="px-4 py-3 text-green-600 font-medium">✓ Supported</td>
+              <td class="px-4 py-3 text-red-500 font-medium">✗ Not supported</td>
+            </tr>
+            <tr class="border-t border-fd-border">
+              <td class="px-4 py-3 font-medium text-fd-card-foreground">Real-time Events</td>
+              <td class="px-4 py-3 text-green-600 font-medium">✓ Push-based</td>
+              <td class="px-4 py-3 text-fd-muted-foreground">Requires polling</td>
+            </tr>
+            <tr class="border-t border-fd-border">
+              <td class="px-4 py-3 font-medium text-fd-card-foreground">Best For</td>
+              <td class="px-4 py-3 text-fd-muted-foreground">Wallets, dApps, indexers, bots</td>
+              <td class="px-4 py-3 text-fd-muted-foreground">Scripts, one-off queries, CI checks</td>
+            </tr>
+            <tr class="border-t border-fd-border">
+              <td class="px-4 py-3 font-medium text-fd-card-foreground">Overhead</td>
+              <td class="px-4 py-3 text-fd-muted-foreground">Low after handshake</td>
+              <td class="px-4 py-3 text-fd-muted-foreground">TLS handshake per batch</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Best Practices -->
+    <section class="mb-10">
+      <h2 class="text-2xl font-bold text-fd-card-foreground mb-4">Best Practices</h2>
+      <div class="grid grid-cols-2 gap-4">
+        <div class="bg-fd-card border border-fd-border rounded-xl p-4">
+          <h3 class="font-bold text-fd-card-foreground mb-2">Cache Metadata &amp; Types</h3>
+          <p class="text-sm text-fd-muted-foreground">
+            Runtime metadata (fetched via <code class="bg-fd-secondary px-1 rounded">state_getMetadata</code>) is large
+            and rarely changes. Cache it locally and only refresh when the <code class="bg-fd-secondary px-1 rounded">specVersion</code>
+            changes. Similarly, cache type bundle definitions to avoid redundant network calls on startup.
+          </p>
+        </div>
+        <div class="bg-fd-card border border-fd-border rounded-xl p-4">
+          <h3 class="font-bold text-fd-card-foreground mb-2">Paginated Storage Scans</h3>
+          <p class="text-sm text-fd-muted-foreground">
+            Use <code class="bg-fd-secondary px-1 rounded">state_getKeysPaged</code> instead of
+            <code class="bg-fd-secondary px-1 rounded">state_getKeys</code> for large storage maps. The paged
+            version accepts a <code class="bg-fd-secondary px-1 rounded">count</code> and <code class="bg-fd-secondary px-1 rounded">startKey</code>
+            argument, preventing timeouts and oversized responses.
+          </p>
+        </div>
+        <div class="bg-fd-card border border-fd-border rounded-xl p-4">
+          <h3 class="font-bold text-fd-card-foreground mb-2">Reconnection &amp; Backoff</h3>
+          <p class="text-sm text-fd-muted-foreground">
+            Implement exponential backoff when WebSocket connections drop. The <code class="bg-fd-secondary px-1 rounded">@polkadot/api</code>
+            library handles basic reconnection automatically, but you should handle the <code class="bg-fd-secondary px-1 rounded">error</code>
+            event and re-subscribe to any active subscriptions after reconnecting.
+          </p>
+        </div>
+        <div class="bg-fd-card border border-fd-border rounded-xl p-4">
+          <h3 class="font-bold text-fd-card-foreground mb-2">Connection Pooling</h3>
+          <p class="text-sm text-fd-muted-foreground">
+            For server-side applications handling many concurrent users, maintain a pool of WebSocket connections
+            rather than opening a new connection per request. Share a single <code class="bg-fd-secondary px-1 rounded">ApiPromise</code>
+            instance across your application and use it concurrently — it is designed for concurrent access.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Troubleshooting -->
+    <section class="mb-10">
+      <h2 class="text-2xl font-bold text-fd-card-foreground mb-4">Troubleshooting</h2>
+      <div class="bg-fd-card border border-fd-border rounded-xl p-6">
+        <dl class="space-y-4 text-sm">
+          <div>
+            <dt class="font-semibold text-fd-card-foreground">Connection Refused / 401 Unauthorized</dt>
+            <dd class="text-fd-muted-foreground mt-1">Verify your API key is correct and that your Dwellir plan is active. Check the dashboard for quota exhaustion. Ensure you are not appending extra path segments after the key.</dd>
+          </div>
+          <div class="border-t border-fd-border pt-4">
+            <dt class="font-semibold text-fd-card-foreground">Invalid SS58 Address Error</dt>
+            <dd class="text-fd-muted-foreground mt-1">Acala uses SS58 prefix <strong>10</strong>. If you see "Invalid SS58 address", re-encode the address with prefix 10 using <code class="bg-fd-secondary px-1 rounded">encodeAddress(decodeAddress(address), 10)</code> from <code class="bg-fd-secondary px-1 rounded">@polkadot/util-crypto</code>.</dd>
+          </div>
+          <div class="border-t border-fd-border pt-4">
+            <dt class="font-semibold text-fd-card-foreground">Type Decoding Errors</dt>
+            <dd class="text-fd-muted-foreground mt-1">After a runtime upgrade, cached type definitions may be stale. Call <code class="bg-fd-secondary px-1 rounded">state_getMetadata</code> to retrieve fresh metadata and reinitialise your API instance. Ensure you are using a version of <code class="bg-fd-secondary px-1 rounded">@polkadot/api</code> compatible with spec version 2300.</dd>
+          </div>
+          <div class="border-t border-fd-border pt-4">
+            <dt class="font-semibold text-fd-card-foreground">Extrinsic Failures (1010 / Bad Signature)</dt>
+            <dd class="text-fd-muted-foreground mt-1">Verify that the genesis hash in your signed payload matches <code class="bg-fd-secondary px-1 rounded">0xfc41b9bd...ba64c</code> and that the <code class="bg-fd-secondary px-1 rounded">transactionVersion</code> is set to <strong>3</strong>. Also confirm the account nonce is current — fetch it fresh with <code class="bg-fd-secondary px-1 rounded">system_accountNextIndex</code>.</dd>
+          </div>
+        </dl>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="border-t border-fd-border bg-fd-card mt-12">
+    <div class="max-w-5xl mx-auto px-4 py-8 text-sm text-fd-muted-foreground">
+      <div class="flex flex-wrap gap-6 justify-between">
+        <div>
+          <p class="font-semibold text-fd-card-foreground mb-2">Dwellir</p>
+          <p>Managed RPC infrastructure for Acala Network.</p>
+          <p>Support: <a href="mailto:support@dwellir.com" class="text-fd-primary hover:underline">support@dwellir.com</a></p>
+        </div>
+        <div>
+          <p class="font-semibold text-fd-card-foreground mb-2">Resources</p>
+          <ul class="space-y-1">
+            <li><a href="https://dashboard.dwellir.com/" class="text-fd-primary hover:underline" target="_blank">Dwellir Dashboard</a></li>
+            <li><a href="https://acala.network/" class="text-fd-primary hover:underline" target="_blank">Acala Portal</a></li>
+            <li><a href="https://acala.subscan.io/" class="text-fd-primary hover:underline" target="_blank">Subscan Explorer</a></li>
+          </ul>
+        </div>
+      </div>
+      <p class="mt-6 text-center text-xs">© 2024 Dwellir. Acala is a Polkadot parachain (ID 2000).</p>
+    </div>
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mainnet | Acala Network</title>
+  <link rel="stylesheet" href="06.ugiaasjkpi.css">
+  <link href="css2.css" rel="stylesheet">
+</head>
+<body class="bg-white text-gray-900">
+
+  <header class="border-b border-fd-border bg-fd-card sticky top-0 z-10">
+    <div class="max-w-5xl mx-auto px-4 py-3 flex items-center justify-between">
+      <a href="index.html" class="font-bold text-lg text-fd-card-foreground">Acala Network</a>
+      <nav class="flex gap-4 flex-wrap text-sm">
+        <a href="index.html" class="text-fd-muted-foreground hover:text-fd-primary transition-colors">Home</a>
+        <a href="documentation.html" class="text-fd-muted-foreground hover:text-fd-primary transition-colors">Documentation</a>
+        <a href="develop.html" class="text-fd-muted-foreground hover:text-fd-primary transition-colors">Develop</a>
+        <a href="mainnet.html" class="text-fd-primary font-semibold transition-colors">Mainnet</a>
+        <a href="testnet.html" class="text-fd-muted-foreground hover:text-fd-primary transition-colors">Testnet</a>
+        <a href="node.html" class="text-fd-muted-foreground hover:text-fd-primary transition-colors">Node</a>
+        <a href="rpc.html" class="text-fd-muted-foreground hover:text-fd-primary transition-colors">RPC</a>
+        <a href="methods.html" class="text-fd-muted-foreground hover:text-fd-primary transition-colors">Methods</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="max-w-5xl mx-auto px-4 py-10">
+
+    <h1 class="text-3xl font-bold text-fd-card-foreground mb-2">Mainnet</h1>
+    <p class="text-fd-muted-foreground mb-8">Acala mainnet chain parameters, RPC endpoints, and network specifications.</p>
+
+    <!-- Chain Parameters -->
+    <section class="mb-10">
+      <h2 class="text-2xl font-bold text-fd-card-foreground mb-4">Chain Parameters</h2>
+      <div class="bg-fd-card border border-fd-border rounded-xl overflow-hidden">
+        <table class="w-full text-sm">
+          <thead class="bg-fd-secondary">
+            <tr>
+              <th class="text-left px-4 py-3 text-fd-card-foreground font-semibold">Parameter</th>
+              <th class="text-left px-4 py-3 text-fd-card-foreground font-semibold">Value</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="border-t border-fd-border">
+              <td class="px-4 py-3 font-medium text-fd-card-foreground">Relay Chain</td>
+              <td class="px-4 py-3 text-fd-muted-foreground">Polkadot</td>
+            </tr>
+            <tr class="border-t border-fd-border">
+              <td class="px-4 py-3 font-medium text-fd-card-foreground">Parachain ID</td>
+              <td class="px-4 py-3 text-fd-muted-foreground"><code class="bg-fd-secondary px-1 rounded">2000</code></td>
+            </tr>
+            <tr class="border-t border-fd-border">
+              <td class="px-4 py-3 font-medium text-fd-card-foreground">Native Token</td>
+              <td class="px-4 py-3 text-fd-muted-foreground">ACA</td>
+            </tr>
+            <tr class="border-t border-fd-border">
+              <td class="px-4 py-3 font-medium text-fd-card-foreground">SS58 Address Prefix</td>
+              <td class="px-4 py-3 text-fd-muted-foreground"><code class="bg-fd-secondary px-1 rounded">10</code></td>
+            </tr>
+            <tr class="border-t border-fd-border">
+              <td class="px-4 py-3 font-medium text-fd-card-foreground">Genesis Hash</td>
+              <td class="px-4 py-3 text-fd-muted-foreground"><code class="bg-fd-secondary px-1 rounded text-xs">0xfc41b9bd8ef8fe53d58c7ea67c794c7ec9a73daf05e6d54b14ff6342c99ba64c</code></td>
+            </tr>
+            <tr class="border-t border-fd-border">
+              <td class="px-4 py-3 font-medium text-fd-card-foreground">Spec Version</td>
+              <td class="px-4 py-3 text-fd-muted-foreground"><code class="bg-fd-secondary px-1 rounded">2300</code></td>
+            </tr>
+            <tr class="border-t border-fd-border">
+              <td class="px-4 py-3 font-medium text-fd-card-foreground">Transaction Version</td>
+              <td class="px-4 py-3 text-fd-muted-foreground"><code class="bg-fd-secondary px-1 rounded">3</code></td>
+            </tr>
+            <tr class="border-t border-fd-border">
+              <td class="px-4 py-3 font-medium text-fd-card-foreground">EVM Chain ID</td>
+              <td class="px-4 py-3 text-fd-muted-foreground"><code class="bg-fd-secondary px-1 rounded">787</code></td>
+            </tr>
+            <tr class="border-t border-fd-border">
+              <td class="px-4 py-3 font-medium text-fd-card-foreground">Block Time</td>
+              <td class="px-4 py-3 text-fd-muted-foreground">~12 seconds (one block per Polkadot relay chain block)</td>
+            </tr>
+            <tr class="border-t border-fd-border">
+              <td class="px-4 py-3 font-medium text-fd-card-foreground">Consensus</td>
+              <td class="py-3 px-4 text-fd-muted-foreground">BABE/GRANDPA via Polkadot shared security (collator + validator)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- RPC Endpoints -->
+    <section class="mb-10">
+      <h2 class="text-2xl font-bold text-fd-card-foreground mb-4">Dwellir RPC Endpoints</h2>
+      <p class="text-fd-muted-foreground mb-4">
+        Dwellir provides managed, highly-available RPC infrastructure for Acala. You must supply your API key
+        (obtained from <a href="https://dashboard.dwellir.com/" class="text-fd-primary hover:underline" target="_blank">dashboard.dwellir.com</a>)
+        in place of <code class="bg-fd-secondary px-1 rounded">YOUR_API_KEY</code>.
+      </p>
+      <div class="grid grid-cols-2 gap-4">
+        <div class="bg-fd-card border border-fd-border rounded-xl p-4">
+          <h3 class="font-bold text-fd-card-foreground mb-2">🌐 HTTPS Endpoint</h3>
+          <p class="text-sm text-fd-muted-foreground mb-2">Use for single-request queries and extrinsic submission.</p>
+          <pre class="bg-fd-secondary rounded-lg p-3 text-xs overflow-x-auto"><code>https://api-acala.n.dwellir.com/YOUR_API_KEY</code></pre>
+        </div>
+        <div class="bg-fd-card border border-fd-border rounded-xl p-4">
+          <h3 class="font-bold text-fd-card-foreground mb-2">🔌 WebSocket Endpoint</h3>
+          <p class="text-sm text-fd-muted-foreground mb-2">Preferred for subscriptions, real-time data, and stateful sessions.</p>
+          <pre class="bg-fd-secondary rounded-lg p-3 text-xs overflow-x-auto"><code>wss://api-acala.n.dwellir.com/YOUR_API_KEY</code></pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- Karura -->
+    <section class="mb-10">
+      <h2 class="text-2xl font-bold text-fd-card-foreground mb-4">Karura — Canary Network</h2>
+      <div class="bg-fd-card border border-fd-border rounded-xl p-6">
+        <p class="text-fd-muted-foreground mb-3">
+          <strong>Karura</strong> is the canary network of Acala, deployed as <strong>parachain 2000</strong> on the
+          <strong>Kusama</strong> relay chain. "Canary network" means Karura operates with real economic value but
+          is used to test and validate new features before they are deployed on Acala mainnet. Kusama itself is
+          Polkadot's canary chain, known for faster governance and a higher risk tolerance.
+        </p>
+        <p class="text-fd-muted-foreground mb-4">
+          Karura has its own native token <strong>KAR</strong> (as opposed to ACA on Acala mainnet), its own
+          stablecoin <strong>kUSD</strong>, and liquid staking token <strong>LKSM</strong> (Liquid KSM).
+          The SS58 prefix for Karura addresses is <strong>8</strong>.
+        </p>
+        <div class="bg-fd-secondary border border-fd-border rounded-xl overflow-hidden">
+          <table class="w-full text-sm">
+            <thead>
+              <tr>
+                <th class="text-left px-4 py-2 text-fd-card-foreground font-semibold">Parameter</th>
+                <th class="text-left px-4 py-2 text-fd-card-foreground font-semibold">Acala (Polkadot)</th>
+                <th class="text-left px-4 py-2 text-fd-card-foreground font-semibold">Karura (Kusama)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="border-t border-fd-border">
+                <td class="px-4 py-2 font-medium text-fd-card-foreground">Relay Chain</td>
+                <td class="px-4 py-2 text-fd-muted-foreground">Polkadot</td>
+                <td class="px-4 py-2 text-fd-muted-foreground">Kusama</td>
+              </tr>
+              <tr class="border-t border-fd-border">
+                <td class="px-4 py-2 font-medium text-fd-card-foreground">Parachain ID</td>
+                <td class="px-4 py-2 text-fd-muted-foreground">2000</td>
+                <td class="px-4 py-2 text-fd-muted-foreground">2000</td>
+              </tr>
+              <tr class="border-t border-fd-border">
+                <td class="px-4 py-2 font-medium text-fd-card-foreground">Native Token</td>
+                <td class="px-4 py-2 text-fd-muted-foreground">ACA</td>
+                <td class="px-4 py-2 text-fd-muted-foreground">KAR</td>
+              </tr>
+              <tr class="border-t border-fd-border">
+                <td class="px-4 py-2 font-medium text-fd-card-foreground">Stablecoin</td>
+                <td class="px-4 py-2 text-fd-muted-foreground">aUSD</td>
+                <td class="px-4 py-2 text-fd-muted-foreground">kUSD</td>
+              </tr>
+              <tr class="border-t border-fd-border">
+                <td class="px-4 py-2 font-medium text-fd-card-foreground">SS58 Prefix</td>
+                <td class="px-4 py-2 text-fd-muted-foreground">10</td>
+                <td class="px-4 py-2 text-fd-muted-foreground">8</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- Migration -->
+    <section class="mb-10">
+      <h2 class="text-2xl font-bold text-fd-card-foreground mb-4">Migration &amp; Upgrade Notes</h2>
+      <div class="bg-fd-card border border-fd-border rounded-xl p-6">
+        <p class="text-fd-muted-foreground mb-4">
+          When migrating applications between Acala runtime upgrades or moving from Karura to Acala mainnet,
+          keep the following in mind:
+        </p>
+        <ul class="list-disc list-inside text-sm text-fd-muted-foreground space-y-2">
+          <li><strong>Re-encode SS58 addresses:</strong> Karura uses prefix 8 and Acala uses prefix 10. Always re-encode
+            addresses when switching networks. The underlying public key is identical.</li>
+          <li><strong>Refresh metadata:</strong> After a runtime upgrade (<code class="bg-fd-secondary px-1 rounded">specVersion</code> bump),
+            call <code class="bg-fd-secondary px-1 rounded">state_getMetadata</code> to refresh your local type registry before
+            constructing extrinsics.</li>
+          <li><strong>Recalibrate fees:</strong> Transaction weight and fee coefficients may change between spec versions.
+            Always use <code class="bg-fd-secondary px-1 rounded">payment_queryInfo</code> to estimate fees dynamically rather
+            than hardcoding values.</li>
+          <li><strong>Check transaction version:</strong> The current <code class="bg-fd-secondary px-1 rounded">transactionVersion</code>
+            is <strong>3</strong>. Signed extrinsics include this value; mismatches will cause rejection.</li>
+          <li><strong>Verify genesis hash:</strong> All signed transactions include the genesis hash. Ensure your signing
+            library is configured with <code class="bg-fd-secondary px-1 rounded">0xfc41b9bd8ef8fe53d58c7ea67c794c7ec9a73daf05e6d54b14ff6342c99ba64c</code>.</li>
+        </ul>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="border-t border-fd-border bg-fd-card mt-12">
+    <div class="max-w-5xl mx-auto px-4 py-8 text-sm text-fd-muted-foreground">
+      <div class="flex flex-wrap gap-6 justify-between">
+        <div>
+          <p class="font-semibold text-fd-card-foreground mb-2">Dwellir</p>
+          <p>Managed RPC infrastructure for Acala Network.</p>
+          <p>Support: <a href="mailto:support@dwellir.com" class="text-fd-primary hover:underline">support@dwellir.com</a></p>
+        </div>
+        <div>
+          <p class="font-semibold text-fd-card-foreground mb-2">Resources</p>
+          <ul class="space-y-1">
+            <li><a href="https://dashboard.dwellir.com/" class="text-fd-primary hover:underline" target="_blank">Dwellir Dashboard</a></li>
+            <li><a href="https://acala.network/" class="text-fd-primary hover:underline" target="_blank">Acala Portal</a></li>
+            <li><a href="https://acala.subscan.io/" class="text-fd-primary hover:underline" target="_blank">Subscan Explorer</a></li>
+          </ul>
+        </div>
+      </div>
+      <p class="mt-6 text-center text-xs">© 2024 Dwellir. Acala is a Polkadot parachain (ID 2000).</p>
+    </div>
+  </footer>
+
+</body>
+</html>
